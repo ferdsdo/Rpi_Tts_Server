@@ -1,0 +1,14 @@
+{
+  "name": "rpitts",
+  "version": "1.0.0",
+  "description": "Raspberry pi that host a webserver can send messages to server rpi plays messages tts style",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rpi TTS Interface</title>
+    <script>
+        // NOTE: must change url to the divice running it
+        const ip = "http://192.168.0.58:3000";
+        const url = "/say?msg=";
+        async function sendMsg() {
+            var msg = document.getElementById("input").value;
+            const Http = new XMLHttpRequest();
+            Http.open("GET", ip + url + encodeURIComponent(msg));
+            Http.send();
+            Http.onreadystatechange=(e)=> {
+                console.log(Http.responseText);
+            }
+            document.getElementById("input").value = "";
+        }
+        window.onload = () => {
+            var e = document.getElementById("input");
+            e.addEventListener("keydown", (e) => {
+                if(e.keyCode === 13) {
+                    sendMsg();
+                    document.getElementById("input").value = "";
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <label>Text: <input id="input" type="text"></label>
+    <button onclick="sendMsg();">Send!</button>
+    <p id="response"></p>
+</body>
+</html>
